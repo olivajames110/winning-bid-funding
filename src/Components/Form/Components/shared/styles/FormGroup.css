@@ -1,0 +1,13 @@
+.form-group-outer-wrapper {
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+
+.form-group-outer-wrapper .form-group__title {
+  font-weight: 600 !important;
+  color: #3f3c3c;
+  font-size: 13px;
+  line-height: 21px;
+}
+/*# sourceMappingURL=FormGroup.css.map */

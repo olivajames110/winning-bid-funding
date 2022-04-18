@@ -1,0 +1,20 @@
+.progress-bar-container {
+  position: relative;
+  margin-top: 25px;
+  max-width: var(--pageMaxWidth);
+  width: 100%;
+  padding: 20px 15px 60px;
+  color: #ffff;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 640px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/*# sourceMappingURL=ProgressBar.css.map */

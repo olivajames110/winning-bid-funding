@@ -1,25 +1,17 @@
+import * as React from "react";
 
-import './App.css';
+import "./assets/styles/global.css";
 
-function App() {
+import Header from "./layout/Header/Header";
+import Main from "./layout/Main/Main";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-     
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Main />
+    </>
   );
-}
+};
 
 export default App;

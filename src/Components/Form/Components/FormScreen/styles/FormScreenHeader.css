@@ -1,0 +1,12 @@
+.form-screen-title-outer-wrapper {
+  position: relative;
+  padding-top: 20px;
+}
+
+.form-screen-title-outer-wrapper h2 {
+  color: var(--primary);
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+}
+/*# sourceMappingURL=FormScreenHeader.css.map */

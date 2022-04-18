@@ -1,0 +1,34 @@
+.form-screen-footer-outer-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 10px;
+}
+
+.form-screen-footer-outer-wrapper .form-footer-button-outer-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.form-screen-footer-outer-wrapper .form-footer-button-outer-wrapper .form-screen-footer-button {
+  position: relative;
+}
+
+.form-screen-footer-outer-wrapper .form-footer-button-outer-wrapper .form-screen-footer-button#back {
+  position: relative;
+}
+
+.form-screen-footer-outer-wrapper .form-footer-button-outer-wrapper .form-screen-footer-button#next {
+  color: #fff;
+  background-color: #003a74;
+  position: relative;
+}
+/*# sourceMappingURL=FormScreenFooter.css.map */
