@@ -13,7 +13,7 @@ import {
 import AddressAutofill from "../Components/FormInputs/AddressAutofill";
 import RadioSelector from "../Components/FormInputs/RadioSelector";
 import DropdownInput from "../Components/FormInputs/DropdownInput";
-import NumericInput from "material-ui-numeric-input";
+import { VALIDATOR_REQUIRE } from "../../../utils/validators";
 import NumberField from "../Components/FormInputs/NumberField";
 import SocialSecurityInput from "../Components/FormInputs/SocialSecurityInput";
 import PhoneNumberInput from "../Components/FormInputs/PhoneNumberInput";
@@ -30,6 +30,7 @@ import {
 
 const BorrowerInfo = (props) => {
   const [isPreviousUser, setIsPreviousUser] = useState(false);
+  const [pageIsValid, setPageIsValid] = useState(false);
 
   const formState = useSelector((state) => state.formState);
   const formStep = useSelector((state) => state.formStep);
@@ -89,6 +90,7 @@ const BorrowerInfo = (props) => {
             value={formState.nameTitle}
           />
           <TextboxField keyName="nameFirst" label={"First Name"} isRequired />
+
           <TextboxField keyName="nameLast" label={"Last Name"} isRequired />
         </Columns>
         <Columns>
