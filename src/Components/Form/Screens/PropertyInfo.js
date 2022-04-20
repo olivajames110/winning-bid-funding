@@ -16,7 +16,7 @@ const PropertyInfo = (props) => {
 
   const formState = useSelector((state) => state.formState);
   const formStep = useSelector((state) => state.formStep);
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   return (
     <FormScreen
@@ -26,23 +26,24 @@ const PropertyInfo = (props) => {
       show={formStep.step === 3}
       direction={formStep.direction}
     >
-      <FormGroup title="Is application related to financing of a single or multiple properties?">
-        <RadioSelector
-          keyName="hasMultipleProperties"
-          radioItems={[
-            {
-              label: "Single Properties",
-              keyName: "hasMultipleProperties",
-              value: false,
-            },
-            {
-              label: "Multiple Properties",
-              keyName: "hasMultipleProperties",
-              value: true,
-            },
-          ]}
-        />
-      </FormGroup>
+      <RadioSelector
+        title="Is application related to financing of a single or multiple properties?"
+        keyName="hasMultipleProperties"
+        isRequired
+        radioItems={[
+          {
+            label: "Single Properties",
+            keyName: "hasMultipleProperties",
+            value: false,
+          },
+          {
+            label: "Multiple Properties",
+            keyName: "hasMultipleProperties",
+            value: true,
+          },
+        ]}
+      />
+
       <FormGroup title="Subject Property Address">
         <AddressAutofill keyName="subjectPropertyAddress" />
       </FormGroup>
@@ -98,9 +99,9 @@ const PropertyInfo = (props) => {
           helperText=" (all units)"
         />
       </FormGroup>
-      {formState.hasMultipleProperties && (
+      {formState.hasMultipleProperties === "true" && (
         <FormGroup title="Enter any additional addresses for multiple property loan:">
-          <AddressAutofill />
+          <AddressAutofill keyName="subjectPropertyAddress" />
           <Columns>
             <NumberField
               keyName="estimatedAsInValue"
@@ -119,7 +120,7 @@ const PropertyInfo = (props) => {
               maxLength={4}
             />
             <NumberField
-              keyName="monthlyRent2"
+              keyName="subjectPropertyAddressMonthlyRent"
               label={"Monthly Rent"}
               maxLength={4}
               helperText=" (all units)"

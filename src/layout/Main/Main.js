@@ -9,20 +9,11 @@ import Form from "../../Components/Form/Form";
 import { useSelector } from "react-redux";
 import ProgressBar from "../../Components/ProgressBar/ProgressBar";
 const Main = (props) => {
-  const formStep = useSelector((state) => state.formStep.step);
+  const formStep = useSelector((state) => state.formStep);
 
   return (
     <main>
-      <ProgressBar
-        steps={[
-          "Borrower Information",
-          "Loan Information",
-          "Property Information",
-          "Refinance Details",
-          "Legal Disclosure & Signature",
-        ]}
-        formStep={formStep}
-      />
+      <ProgressBar steps={formStep.stepTitles} formStep={formStep.step} />
 
       <Form />
     </main>

@@ -26,15 +26,15 @@ const RefinanceDetails = (props) => {
       backHandler={props.backHandler}
       show={formStep.step === 4}
     >
-      <FormGroup title="Is there existing debt on the property?">
-        <RadioSelector
-          keyName="isExistingDebt"
-          radioItems={[
-            { label: "Yes", keyName: "isExistingDebt", value: true },
-            { label: "No", keyName: "isExistingDebt", value: false },
-          ]}
-        />
-      </FormGroup>
+      <RadioSelector
+        title="Is there existing debt on the property?"
+        keyName="isExistingDebt"
+        radioItems={[
+          { label: "Yes", keyName: "isExistingDebt", value: true },
+          { label: "No", keyName: "isExistingDebt", value: false },
+        ]}
+      />
+
       <FormGroup title="Total unpaid principal balance being refinanced?">
         <NumberField
           keyName="unpaidPrincipal"
@@ -42,78 +42,81 @@ const RefinanceDetails = (props) => {
           maxLength={3}
         />
       </FormGroup>
-      <FormGroup title="Is the current loan in term or maturity default?">
-        <RadioSelector
-          keyName="isInTermOrMaturityDefault"
-          radioItems={[
-            { label: "Yes", keyName: "isInTermOrMaturityDefault", value: true },
-            { label: "No", keyName: "isInTermOrMaturityDefault", value: false },
-          ]}
-        />
-      </FormGroup>
-      <Columns>
-        <NumberField
-          keyName="originalPurchasePrice"
-          label={"Original Purchase Price"}
-          maxLength={3}
-        />
 
-        <DatePickerInput
-          keyName="propertyAcquiredDate"
-          label={"When was the property acquired?"}
-        />
-      </Columns>
-      <FormGroup title="Is there unfinished rehab work from the prior loan?">
-        <RadioSelector
-          keyName="hasUnfinishedRehabWork"
-          radioItems={[
-            { label: "Yes", keyName: "hasUnfinishedRehabWork", value: true },
-            { label: "No", keyName: "hasUnfinishedRehabWork", value: false },
-          ]}
-        />
-        {formState.hasUnfinishedRehabWork && (
-          <LongTextInput
-            keyName="hasUnfinishedRehabWorkDescription"
-            placeholder="Please briefly describe any unfinished rehab work and remaining budget.
-            "
+      <RadioSelector
+        title="Is the current loan in term or maturity default?"
+        keyName="isInTermOrMaturityDefault"
+        radioItems={[
+          { label: "Yes", keyName: "isInTermOrMaturityDefault", value: true },
+          { label: "No", keyName: "isInTermOrMaturityDefault", value: false },
+        ]}
+      />
+
+      <FormGroup title="Total unpaid principal balance being refinanced?">
+        <Columns>
+          <NumberField
+            keyName="originalPurchasePrice"
+            label={"Original Purchase Price"}
+            maxLength={3}
           />
-        )}
+
+          <DatePickerInput
+            keyName="propertyAcquiredDate"
+            label={"When was the property acquired?"}
+          />
+        </Columns>
       </FormGroup>
-      <FormGroup title="Are there any outstanding construction permits or building code violations?">
-        <RadioSelector
-          keyName="hasCodeViolations"
-          radioItems={[
-            { label: "Yes", keyName: "hasCodeViolations", value: true },
-            { label: "No", keyName: "hasCodeViolations", value: false },
-          ]}
+
+      <RadioSelector
+        title="Is there unfinished rehab work from the prior loan?"
+        keyName="hasUnfinishedRehabWork"
+        radioItems={[
+          { label: "Yes", keyName: "hasUnfinishedRehabWork", value: true },
+          { label: "No", keyName: "hasUnfinishedRehabWork", value: false },
+        ]}
+      />
+      {formState.hasUnfinishedRehabWork && (
+        <LongTextInput
+          keyName="hasUnfinishedRehabWorkDescription"
+          placeholder="Please briefly describe any unfinished rehab work and remaining budget.
+            "
         />
-      </FormGroup>
-      <FormGroup title="Are there any unsatisfied judgments or pending lawsuits against the guarantors and/or borrowing entity?">
-        <RadioSelector
-          keyName="hasPendingLawsuits"
-          radioItems={[
-            { label: "Yes", keyName: "hasPendingLawsuits", value: true },
-            { label: "No", keyName: "hasPendingLawsuits", value: false },
-          ]}
-        />
-      </FormGroup>
-      <FormGroup title="Are there any ongoing environmental conditions at the property?">
-        <RadioSelector
-          keyName="hasEnvironmentalConditions"
-          radioItems={[
-            {
-              label: "Yes",
-              keyName: "hasEnvironmentalConditions",
-              value: true,
-            },
-            {
-              label: "No",
-              keyName: "hasEnvironmentalConditions",
-              value: false,
-            },
-          ]}
-        />
-      </FormGroup>
+      )}
+
+      <RadioSelector
+        title="Are there any outstanding construction permits or building code violations?"
+        keyName="hasCodeViolations"
+        radioItems={[
+          { label: "Yes", keyName: "hasCodeViolations", value: true },
+          { label: "No", keyName: "hasCodeViolations", value: false },
+        ]}
+      />
+
+      <RadioSelector
+        title="Are there any unsatisfied judgments or pending lawsuits against the guarantors and/or borrowing entity?"
+        keyName="hasPendingLawsuits"
+        radioItems={[
+          { label: "Yes", keyName: "hasPendingLawsuits", value: true },
+          { label: "No", keyName: "hasPendingLawsuits", value: false },
+        ]}
+      />
+
+      <RadioSelector
+        title="Are there any ongoing environmental conditions at the property?"
+        keyName="hasEnvironmentalConditions"
+        radioItems={[
+          {
+            label: "Yes",
+            keyName: "hasEnvironmentalConditions",
+            value: true,
+          },
+          {
+            label: "No",
+            keyName: "hasEnvironmentalConditions",
+            value: false,
+          },
+        ]}
+      />
     </FormScreen>
   );
 };

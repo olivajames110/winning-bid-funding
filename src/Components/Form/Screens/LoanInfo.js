@@ -15,7 +15,7 @@ import FormGroup from "../Components/shared/FormGroup";
 // import "./Component.css";
 
 const LoanInfo = (props) => {
-  const [state, setState] = useState(null);
+  const [isValid, setIsValid] = useState(false);
   const formState = useSelector((state) => state.formState);
   const formStep = useSelector((state) => state.formStep);
   useEffect(() => {}, []);
@@ -44,40 +44,41 @@ const LoanInfo = (props) => {
         />
       </FormGroup>
 
-      <FormGroup title="Business Plan">
-        <LongTextInput
-          keyName="businessPlan"
-          placeholder="Details on expected timelines, budgets and exit strategy (sale, refinance into long term financing)"
-        />
-      </FormGroup>
+      <LongTextInput
+        invalidValue={25}
+        title="Business Plan"
+        keyName="businessPlan"
+        placeholder="Details on expected timelines, budgets and exit strategy (sale, refinance into long term financing)"
+      />
+
       <FormGroup title="What is your estimated Credit Score?">
         <NumberField
           keyName="creditScore"
           label={"Credit Score"}
           maxLength={3}
         />
+      </FormGroup>
+      <FormGroup title="Number of Flips Completed in the last:">
+        <Columns>
+          <NumberField
+            keyName="flipsCompleted3years"
+            label={"Last 3-year period"}
+            maxLength={3}
+          />
+          <NumberField
+            keyName="flipsCompleted1year"
+            label={"Last 1-year period"}
+            maxLength={3}
+          />
+        </Columns>
+      </FormGroup>
 
-        <FormGroup title="Number of Flips Completed in the last:">
-          <Columns>
-            <NumberField
-              keyName="flipsCompleted3years"
-              label={"Last 3-year period"}
-              maxLength={3}
-            />
-            <NumberField
-              keyName="flipsCompleted1year"
-              label={"Last 1-year period"}
-              maxLength={3}
-            />
-          </Columns>
-        </FormGroup>
-      </FormGroup>
-      <FormGroup title="Upload Borrower Track Record Details">
-        <ImageUpload
-          keyName="borrowerTrackRecordDetails"
-          helperText="Excel file with details on past projects"
-        />
-      </FormGroup>
+      <ImageUpload
+        title="Upload Borrower Track Record Details"
+        keyName="borrowerTrackRecordDetails"
+        helperText="Excel file with details on past projects"
+      />
+
       <FormGroup title="Please enter the number and dollar value of investment properties currently owned">
         <Columns>
           <NumberField
@@ -92,63 +93,62 @@ const LoanInfo = (props) => {
           />
         </Columns>
       </FormGroup>
-      <FormGroup title="Are you a licensed GC?">
-        <RadioSelector
-          keyName={"isLicensedGC"}
-          radioItems={[
-            { label: "Yes", keyName: "isLicensedGC", value: true },
-            { label: "No", keyName: "isLicensedGC", value: false },
-          ]}
-        />
-      </FormGroup>
-      <FormGroup title="Do you have any derogatory housing events such as bankruptcy, foreclosure, deed-in-lieu, short sale, or forbearance in the past 4 years?">
-        <RadioSelector
-          keyName={"hasForbearanceProperty"}
-          radioItems={[
-            { label: "Yes", keyName: "hasForbearanceProperty", value: true },
-            { label: "No", keyName: "hasForbearanceProperty", value: false },
-          ]}
-        />
-        {formState.hasForbearanceProperty && (
-          <>
-            <FormGroup title="If applicable, please select housing events:">
-              <TextboxField
-                keyName="forbearanceEvents"
-                label={"Select Events"}
-              />
-            </FormGroup>
-            <FormGroup title="Please briefly explain any derogatory housing events.">
-              <LongTextInput keyName="forbearanceExplanation" />
-            </FormGroup>
-          </>
-        )}
-      </FormGroup>
-      <FormGroup title="Have you ever been convicted of a felony or have you been convicted of a misdemeanor involving fraud or embezzlement?">
-        <RadioSelector
-          keyName="hasFelony"
-          radioItems={[
-            { label: "Yes", keyName: "hasFelony", value: true },
-            { label: "No", keyName: "hasFelony", value: false },
-          ]}
-        />
-        {formState.hasFelony && (
-          <>
-            <FormGroup title="Please briefly explain any such items Flatiron Realty Capital would find on your background report.">
-              <LongTextInput keyName="felonyExplanation" />
-            </FormGroup>
-          </>
-        )}
-      </FormGroup>
 
-      <FormGroup title="What is your marital status? ">
-        <RadioSelector
-          keyName="isMarried"
-          radioItems={[
-            { label: "Married", keyName: "isMarried", value: true },
-            { label: "Not Married", keyName: "isMarried", value: false },
-          ]}
-        />
-      </FormGroup>
+      <RadioSelector
+        title="Are you a licensed GC?"
+        keyName={"isLicensedGC"}
+        radioItems={[
+          { label: "Yes", keyName: "isLicensedGC", value: true },
+          { label: "No", keyName: "isLicensedGC", value: false },
+        ]}
+      />
+
+      <RadioSelector
+        title="Do you have any derogatory housing events such as bankruptcy, foreclosure, deed-in-lieu, short sale, or forbearance in the past 4 years?"
+        keyName={"hasForbearanceProperty"}
+        radioItems={[
+          { label: "Yes", keyName: "hasForbearanceProperty", value: true },
+          { label: "No", keyName: "hasForbearanceProperty", value: false },
+        ]}
+      />
+      {formState.hasForbearanceProperty && (
+        <>
+          <FormGroup title="If applicable, please select housing events:">
+            <TextboxField keyName="forbearanceEvents" label={"Select Events"} />
+          </FormGroup>
+          <FormGroup>
+            <LongTextInput
+              title="Please briefly explain any derogatory housing events."
+              keyName="forbearanceExplanation"
+            />
+          </FormGroup>
+        </>
+      )}
+
+      <RadioSelector
+        title="Have you ever been convicted of a felony or have you been convicted of a misdemeanor involving fraud or embezzlement?"
+        keyName="hasFelony"
+        radioItems={[
+          { label: "Yes", keyName: "hasFelony", value: true },
+          { label: "No", keyName: "hasFelony", value: false },
+        ]}
+      />
+      {formState.hasFelony && (
+        <>
+          <FormGroup title="Please briefly explain any such items Flatiron Realty Capital would find on your background report.">
+            <LongTextInput keyName="felonyExplanation" />
+          </FormGroup>
+        </>
+      )}
+
+      <RadioSelector
+        title="What is your marital status? "
+        keyName="isMarried"
+        radioItems={[
+          { label: "Married", keyName: "isMarried", value: true },
+          { label: "Not Married", keyName: "isMarried", value: false },
+        ]}
+      />
     </FormScreen>
   );
 };

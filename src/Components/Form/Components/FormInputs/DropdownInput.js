@@ -16,7 +16,7 @@ const DropdownInput = (props) => {
   const [value, setValue] = useState(props.value || "");
 
   const dispatch = useDispatch();
-
+  const formStepIsValid = useSelector((state) => state.formStep.stepIsValid);
   const formState = useSelector((state) => state.formState);
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -31,6 +31,12 @@ const DropdownInput = (props) => {
         <InputLabel
           shrink={formState[props.keyName] === "" ? false : true}
           id="select-label"
+          required={props.isRequired}
+          error={
+            !formStepIsValid &&
+            props.isRequired &&
+            formState[props.keyName] === ""
+          }
         >
           {props.label}
         </InputLabel>
@@ -44,6 +50,12 @@ const DropdownInput = (props) => {
           MenuProps={MenuProps}
           onChange={handleChange}
           placeholder={"as"}
+          required={props.isRequired}
+          error={
+            !formStepIsValid &&
+            props.isRequired &&
+            formState[props.keyName] === ""
+          }
         >
           {props.downdownItems.map((d, i) => (
             <MenuItem key={i} value={typeof d === "object" ? d.value : d}>

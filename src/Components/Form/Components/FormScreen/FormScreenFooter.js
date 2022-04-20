@@ -18,8 +18,8 @@ const FormScreenFooter = (props) => {
       </button>
       <button
         onClick={props.nextHandler}
-        type={formStep.step === 5 ? "submit" : "button"}
         id="next"
+        type="button"
         className="form-screen-footer-button"
       >
         {formStep.step === 5 ? "Submit" : "Next"}

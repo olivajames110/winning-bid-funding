@@ -27,14 +27,14 @@ const FormScreen = (props) => {
       unmountOnExit
     >
       <Card id={props.id}>
-        <div className="form-screen-card-inner-wrapper">
+        <form className="form-screen-card-inner-wrapper">
           <FormScreenHeader title={props.title} />
           <FormScreenBody>{props.children}</FormScreenBody>
           <FormScreenFooter
             nextHandler={props.nextHandler}
             backHandler={props.backHandler}
           />
-        </div>
+        </form>
       </Card>
     </CSSTransition>
   );

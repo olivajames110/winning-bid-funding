@@ -1,5 +1,6 @@
 .radio-selection-wrapper {
   position: relative;
+  z-index: 11111;
   // padding: 25px 0 15px;
 
   .MuiTypography-root {
@@ -21,7 +22,7 @@
       margin-left: 0;
       margin-right: 0;
       //   flex-grow: 1;
-      margin: 8px 15px;
+      margin: 8px 15px 0;
       //   margin-bottom: 15px;
       .MuiFormControlLabel-root {
         margin-left: 0;

@@ -5,22 +5,11 @@ import { updateFormState } from "../../../../redux/actions/formStateActions";
 
 // import './RadioSelectorItem.css'
 const RadioSelectorItem = (props) => {
-  const dispatch = useDispatch();
-
-  const onChangeHandler = () => {
-    console.log("change");
-    dispatch(
-      updateFormState({
-        keyName: props.keyName,
-        value: props.value,
-      })
-    );
-  };
   return (
     <div className="radio-selector-item-wrapper">
       <FormControlLabel
         value={props.value}
-        control={<Radio onChange={onChangeHandler} />}
+        control={<Radio />}
         label={`${props.label} `}
         labelPlacement={props.labelPlacement || "bottom"}
       />

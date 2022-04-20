@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFormState } from "../../../../redux/actions/formStateActions";
+import FormGroup from "../shared/FormGroup";
 
 import FormInput from "./FormInput";
 import "./styles/ImageUpload.css";
@@ -79,28 +80,38 @@ const ImageUpload = (props) => {
     </div>
   );
   return (
-    <FormInput>
-      <div className="image-upload-inner-wrapper">
-        <button
-          type="button"
-          onClick={imagePickerHandler}
-          className="image-upload-box"
-        >
-          {uploadIcon}
-          <div className="image-upload__title">Upload Image</div>
-        </button>
-        <input
-          ref={imageUploadRef}
-          style={{ display: "none" }}
-          id="image-upload"
-          type="file"
-          accept=".jpg, .png, .jpeg"
-          onChange={pickedHandler}
-        />
-        {formState[props.keyName] && imagePreview}
-      </div>
-      <p className="helper-text">{props.helperText}</p>
-    </FormInput>
+    <FormGroup
+      keyName={props.keyName}
+      title={props.title}
+      isRequired={props.isRequired}
+      customInvalidRequirements={formState[props.keyName] === "" ? true : ""}
+    >
+      <FormInput>
+        <div className="image-upload-inner-wrapper">
+          <button
+            type="button"
+            onClick={imagePickerHandler}
+            className="image-upload-box"
+          >
+            {uploadIcon}
+            <div className="image-upload__title">Upload Image</div>
+          </button>
+          <input
+            ref={imageUploadRef}
+            style={{ display: "none" }}
+            id="image-upload"
+            required={
+              formState[props.keyName] !== "" ? false : props.isRequired
+            }
+            type="file"
+            accept=".jpg, .png, .jpeg"
+            onChange={pickedHandler}
+          />
+          {formState[props.keyName] && imagePreview}
+        </div>
+        <p className="helper-text">{props.helperText}</p>
+      </FormInput>
+    </FormGroup>
   );
 };
 export default ImageUpload;

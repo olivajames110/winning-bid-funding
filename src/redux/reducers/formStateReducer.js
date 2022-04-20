@@ -12,7 +12,7 @@ const initState = {
   dobMonth: "",
   dobDay: "",
   dobYear: "",
-  isCitzen: true,
+  isCitizen: "",
   ssn: "",
   identificationExpirationDate: "",
   identificationIssueDate: "",
@@ -64,13 +64,7 @@ const formStateReducer = (state = initState, action) => {
     case "UPDATE_FORM_STATE":
       let newState = { ...state };
       console.log(action.payload.keyName, action.payload.value);
-      if (action.payload.subKeyName) {
-        newState[action.payload.keyName][action.payload.subKeyName] =
-          action.payload.value;
-      } else {
-        newState[action.payload.keyName] = action.payload.value;
-      }
-
+      newState[action.payload.keyName] = action.payload.value;
       return newState;
 
     case "CLEAR_FORM_STATE":

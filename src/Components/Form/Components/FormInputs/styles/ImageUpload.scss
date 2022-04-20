@@ -3,7 +3,9 @@ $boxHeight: 100px;
 .image-upload-inner-wrapper {
   height: $boxHeight;
   display: flex;
+  position: relative;
   width: 100%;
+  z-index: 111111;
   .image-upload-box {
     display: flex;
     flex-grow: 1;

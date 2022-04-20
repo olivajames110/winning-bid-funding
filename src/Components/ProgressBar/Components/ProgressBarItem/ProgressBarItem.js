@@ -3,15 +3,9 @@ import React from "react";
 import ProgressBarLine from "../ProgressBarLine/ProgressBarLine";
 import ProgressBarStep from "../ProgressBarStep/ProgressBarStep";
 
-import "./ProgressBarItem.css";
-
 const ProgressBarItem = (props) => {
   return (
-    <div
-      className={`progress-bar-item-container ${
-        props.isLastChild && "last-child"
-      }`}
-    >
+    <div className={`progress-bar-item ${props.isLastChild && "last-child"}`}>
       <ProgressBarStep
         label={props.label}
         stepNumber={props.stepNumber}

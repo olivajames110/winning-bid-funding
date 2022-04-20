@@ -3,33 +3,26 @@ import "./ProgressBar.css";
 import "../../assets/styles/transitionAnimations/slideUp/slideUp.css";
 
 import ProgressBarItem from "./Components/ProgressBarItem/ProgressBarItem";
-import { useSelector } from "react-redux";
-import { CSSTransition } from "react-transition-group";
-const ProgressBar = (props) => {
-  //Component state
-  const [step, setStep] = useState(props.formStep || 1);
 
-  useEffect(() => {
-    setStep(props.formStep);
-  }, [props.formStep]);
-
+const ProgressBar = ({ steps, formStep }) => {
   return (
     <div className="progress-bar-container">
-      {props.steps.map((p, i) => {
-        if (p) {
-          return (
-            <ProgressBarItem
-              key={i + 1}
-              label={p}
-              stepNumber={i + 1}
-              currentStep={step}
-              isActive={i + 1 === step}
-              isCompleted={i + 1 < step}
-              isLastChild={i === props.steps.length - 1}
-            />
-          );
-        }
-      })}
+      {steps &&
+        steps.map((p, i) => {
+          if (p) {
+            return (
+              <ProgressBarItem
+                key={i + 1}
+                label={p}
+                stepNumber={i + 1}
+                currentStep={formStep}
+                isActive={i + 1 === formStep}
+                isCompleted={i + 1 < formStep}
+                isLastChild={i === steps.length - 1}
+              />
+            );
+          }
+        })}
     </div>
   );
 };

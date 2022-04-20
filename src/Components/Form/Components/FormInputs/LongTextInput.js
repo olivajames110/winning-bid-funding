@@ -4,6 +4,7 @@ import FormInput from "./FormInput";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFormState } from "../../../../redux/actions/formStateActions";
 import "./styles/LongTextInput.css";
+import FormGroup from "../shared/FormGroup";
 const LongTextInput = (props) => {
   const [value, setValue] = useState("");
   const [charCount, setCharCount] = useState(0);
@@ -28,54 +29,51 @@ const LongTextInput = (props) => {
     setCharCount(textboxRef.current?.value.length);
     console.log(props.keyName, val);
     dispatch(updateFormState({ keyName, value: val }));
-    // props.onChange(props.keyName, val, isValid);
+    if (charCount >= 25) {
+    }
   };
 
-  //   useEffect(() => {
-  //     console.log("Valid is changed");
-  //     if (props.error && props.value === "") {
-  //       setIsValid(false);
-  //     }
-  //   }, [props.error, props.value]);
-
   return (
-    <FormInput id="long-text">
-      <div className="css-md26zr-MuiInputBase-root-MuiOutlinedInput-root">
-        <textarea
-          ref={textboxRef}
-          onChange={handleChange}
-          draggable="false"
-          value={formState[props.keyName]}
-          className="css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input"
-          placeholder={props.placeholder}
+    <FormGroup
+      keyName={props.keyName}
+      title={props.title}
+      isRequired={props.isRequired}
+      customInvalidRequirements={
+        formState[props.keyName].length < props.invalidValue
+          ? formState[props.keyName]
+          : ""
+      }
+      invalidValue={props.invalidValue}
+    >
+      <FormInput id="long-text">
+        <input
+          style={{ display: "none" }}
+          type="text"
           required={props.isRequired}
-        ></textarea>
-      </div>
+          value={
+            formState[props.keyName].length < props.invalidValue
+              ? ""
+              : formState[props.keyName].length
+          }
+        />
+        <div className="css-md26zr-MuiInputBase-root-MuiOutlinedInput-root">
+          <textarea
+            error={true}
+            ref={textboxRef}
+            onChange={handleChange}
+            draggable="false"
+            value={formState[props.keyName]}
+            className="css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input"
+            placeholder={props.placeholder}
+            // required={props.isRequired}
+          ></textarea>
+        </div>
 
-      {/* <TextField
-        error={!isValid}
-        sx={{ fontSize: ".8rem" }}
-        variant="outlined"
-        size="small"
-        fullWidth
-        id="outlined-basic"
-        label={props.label}
-        onChange={handleChange}
-        value={formState[props.keyName]}
-        required={props.isRequired}
-        style={props.style}
-        minRows={4}
-        placeholder={props.placeholder}
-        inputRef={textboxRef}
-        InputLabelProps={{
-          shrink: formState[props.keyName] === "" ? false : true,
-        }}
-        inputProps={props.inputProps}
-      /> */}
-      <div className={`char-count-container ${charCount >= 25 && "valid"}`}>
-        <span>{charCount}/25</span>
-      </div>
-    </FormInput>
+        <div className={`char-count-container ${charCount >= 25 && "valid"}`}>
+          <span>{charCount}/25</span>
+        </div>
+      </FormInput>
+    </FormGroup>
   );
 };
 

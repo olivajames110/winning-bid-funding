@@ -10,7 +10,7 @@ const NumberField = (props) => {
   const [isValid, setIsValid] = useState(true);
 
   const formState = useSelector((state) => state.formState);
-
+  const formStepIsValid = useSelector((state) => state.formStep.stepIsValid);
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
@@ -42,7 +42,11 @@ const NumberField = (props) => {
     <div className="text-box-wrapper">
       <FormInput>
         <TextField
-          error={!isValid}
+          error={
+            !formStepIsValid &&
+            props.isRequired &&
+            formState[props.keyName] === ""
+          }
           helperText={props.helperText}
           variant="outlined"
           size="small"

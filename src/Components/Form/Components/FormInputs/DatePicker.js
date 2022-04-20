@@ -13,9 +13,18 @@ const DatePickerInput = (props) => {
   const [value, setValue] = useState(null);
 
   const dispatch = useDispatch();
+  const formStepIsValid = useSelector((state) => state.formStep.stepIsValid);
   const formState = useSelector((state) => state.formState);
   return (
-    <FormInput id="date-picker">
+    <FormInput
+      className={
+        !formStepIsValid &&
+        props.isRequired &&
+        formState[props.keyName] === "" &&
+        "error"
+      }
+      id="date-picker"
+    >
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DatePicker
           label={props.label}
@@ -32,9 +41,11 @@ const DatePickerInput = (props) => {
             <TextField
               size="small"
               icon
+              name={props.keyName}
               fontSize="small"
               fullWidth
-              props
+              helperText={props.helperText}
+              required={props.isRequired}
               sx={{ fontSize: ".8rem" }}
               {...params}
             />

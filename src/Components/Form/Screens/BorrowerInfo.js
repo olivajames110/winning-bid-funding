@@ -34,6 +34,7 @@ const BorrowerInfo = (props) => {
 
   const formState = useSelector((state) => state.formState);
   const formStep = useSelector((state) => state.formStep);
+  const formStepIsValid = useSelector((state) => state.formStep.stepIsValid);
 
   const dispatch = useDispatch();
 
@@ -50,7 +51,6 @@ const BorrowerInfo = (props) => {
 
     if (val === "no") {
       console.log("clear");
-
       dispatch(clearFormState());
     }
     if (val === "clear") {
@@ -89,9 +89,8 @@ const BorrowerInfo = (props) => {
             downdownItems={nameTitles}
             value={formState.nameTitle}
           />
-          <TextboxField keyName="nameFirst" label={"First Name"} isRequired />
-
-          <TextboxField keyName="nameLast" label={"Last Name"} isRequired />
+          <TextboxField keyName="nameFirst" label={"First Name"} />
+          <TextboxField keyName="nameLast" label={"Last Name"} />
         </Columns>
         <Columns>
           <PhoneNumberInput />
@@ -117,15 +116,15 @@ const BorrowerInfo = (props) => {
       <FormGroup title="Primary Address">
         <AddressAutofill keyName="primaryAddress" />
       </FormGroup>
-      <FormGroup title="Are you a US Citizen?">
-        <RadioSelector
-          keyName="isCitizen"
-          radioItems={[
-            { label: "Yes", keyName: "isCitizen", value: true },
-            { label: "No", keyName: "isCitizen", value: false },
-          ]}
-        />
-      </FormGroup>
+
+      <RadioSelector
+        title="Are you a US Citizen?"
+        keyName="isCitizen"
+        radioItems={[
+          { label: "Yes", keyName: "isCitizen", value: true },
+          { label: "No", keyName: "isCitizen", value: false },
+        ]}
+      />
 
       {/* CITIZENSHIP  */}
       <FormGroup title="Identity and Citizenship Verification">
@@ -153,12 +152,12 @@ const BorrowerInfo = (props) => {
           />
         </Columns>
       </FormGroup>
-      <FormGroup title="Please Upload Photo ID">
-        <ImageUpload
-          keyName="identificationImage"
-          helperText="If you have any technical issues uploading the photo ID, please feel free email it to us at contact@flatironrealtycapital.com"
-        />
-      </FormGroup>
+
+      <ImageUpload
+        title="Please Upload Photo ID"
+        keyName="identificationImage"
+        helperText="If you have any technical issues uploading the photo ID, please feel free email it to us at contact@flatironrealtycapital.com"
+      />
     </FormScreen>
   );
 };

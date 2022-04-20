@@ -9,8 +9,8 @@ const SocialSecurityInput = (props) => {
   const [isValid, setIsValid] = useState(true);
 
   const formState = useSelector((state) => state.formState);
-  const formStep = useSelector((state) => state.formStep.step);
 
+  const formStepIsValid = useSelector((state) => state.formStep.stepIsValid);
   const dispatch = useDispatch();
 
   const formatSSNum = (num) => {
@@ -43,7 +43,6 @@ const SocialSecurityInput = (props) => {
       return formattedNum;
     }
     return formattedNum;
-    setValue(num);
   };
 
   const handleChange = (event) => {
@@ -57,6 +56,8 @@ const SocialSecurityInput = (props) => {
       dispatch(
         updateFormState({ keyName: "ssn", value: formatSSNum(filterVal) })
       );
+    } else {
+      dispatch(updateFormState({ keyName: "ssn", value: "3" }));
     }
   };
 
@@ -67,18 +68,19 @@ const SocialSecurityInput = (props) => {
     <div className="text-box-wrapper">
       <FormInput>
         <TextField
-          error={!isValid}
+          error={!formStepIsValid && props.isRequired && formState.ssn === ""}
           variant="outlined"
           size="small"
           fullWidth
           id="outlined-basic"
           label={props.label}
+          name={"ssn"}
           onChange={handleChange}
           value={formState.ssn}
           required={props.isRequired}
           style={props.style}
           InputLabelProps={{
-            shrink: formState.ssn === "" ? false : true,
+            shrink: formState.ssn === "" || undefined ? false : true,
           }}
           inputProps={props.inputProps}
         />
